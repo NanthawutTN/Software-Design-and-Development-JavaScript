@@ -172,8 +172,38 @@ let person = {
 ### บันทึกผลการทดลอง 2.1
 ```html
 [บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ข้อมูลนักศึกษา</title>
+</head>
+<body>
+    <h2>ข้อมูลนักศึกษา</h2>
+    
+    <p><strong>รหัสนักศึกษา:</strong> <span id="studentID"></span></p>
+    <p><strong>ชื่อนักศึกษา:</strong> <span id="studentName"></span></p>
+    <p><strong>คะแนนสอบกลางภาค:</strong> <span id="midtermScore"></span></p>
+    <p><strong>คะแนนสอบปลายภาค:</strong> <span id="finalScore"></span></p>
+
+    <script>
+        let student = {
+            id: "67030309",
+            name: "นันทวุฒิ ทัพธานี",
+            midterm: 84,
+            final: 97
+        };
+
+        document.getElementById("studentID").innerText = student.id;
+        document.getElementById("studentName").innerText = student.name;
+        document.getElementById("midtermScore").innerText = student.midterm;
+        document.getElementById("finalScore").innerText = student.final;
+    </script>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.1]
+![image](https://github.com/user-attachments/assets/e06d78ce-8047-43b5-ac48-eb9f9fd097cb)
 
 
 ### 2.2 การดำเนินการทางคณิตศาสตร์
@@ -226,8 +256,69 @@ number /= 2;          // เท่ากับ number = number / 2
 ### บันทึกผลการทดลอง 2.2
 ```html
 [บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>คำนวณคะแนนเฉลี่ย</title>
+</head>
+<body>
+    <h2>คำนวณคะแนนเฉลี่ย</h2>
+    
+    <p>คะแนนวิชา 1: <span id="score1"></span></p>
+    <p>คะแนนวิชา 2: <span id="score2"></span></p>
+    <p>คะแนนวิชา 3: <span id="score3"></span></p>
+    
+    <h3>คะแนนเฉลี่ย: <span id="averageScore">-</span></h3>
+
+    <script>
+        let score1 = 65;
+        let score2 = 80;
+        let score3 = 64;
+
+        let average = (score1 + score2 + score3) / 3;
+
+        document.getElementById("score1").innerText = score1;
+        document.getElementById("score2").innerText = score2;
+        document.getElementById("score3").innerText = score3;
+
+        document.getElementById("averageScore").innerText = average.toFixed(2);
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>คำนวณราคาสินค้าหลังรวม VAT</title>
+</head>
+<body>
+    <h2>คำนวณราคาสินค้าหลังรวม VAT 7%</h2>
+    
+    <p><strong>ชื่อสินค้า:</strong> <span id="productName"></span></p>
+    <p><strong>ราคาสินค้า:</strong> <span id="productPrice"></span> บาท</p>
+    <h3>ราคาสินค้าหลังรวม VAT 7%: <span id="priceWithVAT">-</span> บาท</h3>
+
+    <script>
+
+        let productName = "เสื้อผ้า";
+        let productPrice = 3500;
+
+        let vatRate = 0.07; // 7% VAT
+        let priceWithVAT = productPrice + (productPrice * vatRate);
+
+        document.getElementById("productName").innerText = productName;
+        document.getElementById("productPrice").innerText = productPrice;
+
+        document.getElementById("priceWithVAT").innerText = priceWithVAT.toFixed(2);
+    </script>
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 2.2]
+![image](https://github.com/user-attachments/assets/07def0b5-64d9-48ae-9a52-5ca2e02f1435)
 
 ### 2.3 การควบคุมการทำงาน
 
@@ -359,8 +450,92 @@ for (let i = 1; i <= 5; i++) {
 ### บันทึกผลการทดลอง 2.3
 ```html
 [บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การควบคุมการทำงานใน JavaScript</title>
+</head>
+<body>
+    <button onclick="checkEvenOdd()">ตรวจสอบเลขคู่-คี่</button>
+    <button onclick="showMultiplicationTable(2)">ตารางสูตรคูณแม่ 2</button>
+    <button onclick="showMultiplicationTableWhile(3)">ตารางสูตรคูณแม่ 3</button>
+    <button onclick="countDown()">นับถอยหลัง 10-1</button>
+    <button onclick="checkAge()">ตรวจสอบช่วงวัย</button>
+
+    <h3>ผลลัพธ์:</h3>
+    <pre id="output"></pre>
+
+    <script>
+        function printResult(text) {
+            document.getElementById("output").textContent += text + "\n";
+        }
+
+        function checkEvenOdd() {
+            let number = prompt("กรอกตัวเลขเพื่อตรวจสอบ:");
+            number = parseInt(number);
+            document.getElementById("output").textContent = ""; 
+            if (!isNaN(number)) {
+                if (number % 2 === 0) {
+                    printResult(`${number} เป็นเลขคู่`);
+                } else {
+                    printResult(`${number} เป็นเลขคี่`);
+                }
+            } else {
+                printResult("กรุณากรอกตัวเลขที่ถูกต้อง");
+            }
+        }
+
+        function showMultiplicationTable(num) {
+            document.getElementById("output").textContent = `ตารางสูตรคูณแม่ ${num}\n`;
+            for (let i = 1; i <= 12; i++) {
+                printResult(`${num} x ${i} = ${num * i}`);
+            }
+        }
+
+        function showMultiplicationTableWhile(num) {
+            document.getElementById("output").textContent = `ตารางสูตรคูณแม่ ${num}\n`;
+            let i = 1;
+            while (i <= 12) {
+                printResult(`${num} x ${i} = ${num * i}`);
+                i++;
+            }
+        }
+
+        function countDown() {
+            document.getElementById("output").textContent = "นับถอยหลัง:\n";
+            for (let i = 10; i >= 1; i--) {
+                printResult(i);
+            }
+        }
+
+        function checkAge() {
+            let age = prompt("กรอกอายุของคุณ:");
+            age = parseInt(age);
+            document.getElementById("output").textContent = "";
+
+            if (!isNaN(age)) {
+                if (age >= 0 && age <= 12) {
+                    printResult("อยู่ในช่วงวัยเด็ก");
+                } else if (age >= 13 && age <= 19) {
+                    printResult("อยู่ในช่วงวัยรุ่น");
+                } else if (age >= 20) {
+                    printResult("อยู่ในช่วงวัยผู้ใหญ่");
+                } else {
+                    printResult("กรุณากรอกอายุให้ถูกต้อง");
+                }
+            } else {
+                printResult("กรุณากรอกตัวเลขที่ถูกต้อง");
+            }
+        }
+    </script>
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 2.3]
+![image](https://github.com/user-attachments/assets/17028d18-1b8e-4e57-a184-b3703e19e26a)
 
 ### 2.4 Functions และ Arrow Functions
 
@@ -473,8 +648,86 @@ process(function() {
 ### บันทึกผลการทดลอง 2.4.1
 ```html
 [บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test JavaScript</title>
+</head>
+<body>
+    <h2>Test JavaScript</h2>
+
+    <button onclick="getBMI()">คำนวณค่า BMI</button>
+    <button onclick="getGreeting()">ทักทายตามอายุ</button>
+    <button onclick="checkUserPassword()">ตรวจสอบรหัสผ่าน</button>
+
+    <h3>ผลลัพธ์:</h3>
+    <pre id="output"></pre>
+
+    <script>
+        function printResult(text) {
+            document.getElementById("output").textContent = text;
+        }
+
+        function calculateBMI(weight, height) {
+            let bmi = weight / (height * height);
+            return `ค่า BMI ของคุณคือ ${bmi.toFixed(2)}`;
+        }
+
+        function getBMI() {
+            let weight = parseFloat(prompt("กรอกน้ำหนักของคุณ (กิโลกรัม):"));
+            let height = parseFloat(prompt("กรอกส่วนสูงของคุณ (เมตร):"));
+
+            if (!isNaN(weight) && !isNaN(height) && height > 0) {
+                printResult(calculateBMI(weight, height));
+            } else {
+                printResult("กรุณากรอกค่าน้ำหนักและส่วนสูงที่ถูกต้อง!");
+            }
+        }
+
+        function greetUser(name, age) {
+            if (age < 12) {
+                return `สวัสดีหนูน้อย ${name}!`;
+            } else if (age < 20) {
+                return `เฮ้ ${name}!`;
+            } else {
+                return `สวัสดีครับ ${name}!`;
+            }
+        }
+
+        function getGreeting() {
+            let name = prompt("กรอกชื่อของคุณ:");
+            let age = parseInt(prompt("กรอกอายุของคุณ:"));
+
+            if (name && !isNaN(age)) {
+                printResult(greetUser(name, age));
+            } else {
+                printResult("กรุณากรอกชื่อและอายุที่ถูกต้อง!");
+            }
+        }
+
+    
+        const checkPassword = (password) => {
+            return password.length > 8 ? "รหัสผ่านปลอดภัย" : "รหัสผ่านสั้นเกินไป!";
+        };
+
+        function checkUserPassword() {
+            let password = prompt("กรอกรหัสผ่านของคุณ:");
+            if (password) {
+                printResult(checkPassword(password));
+            } else {
+                printResult("กรุณากรอกรหัสผ่าน!");
+            }
+        }
+    </script>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.4.1]
+![image](https://github.com/user-attachments/assets/e50ea713-f13f-4fa0-bc71-e7a7bcccf521)
+![image](https://github.com/user-attachments/assets/85e49719-f506-4366-90ee-7052c9089c35)
+![image](https://github.com/user-attachments/assets/3df5c385-72db-4e43-9da2-d138859c916c)
 
 
 
@@ -516,8 +769,96 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 ### บันทึกผลการทดลอง 2.4.2
 ```html
 [บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ตรวจสอบข้อมูล</title>
+</head>
+<body>
+
+    <h2>ตรวจสอบรหัสผ่าน</h2>
+    <label for="password">รหัสผ่าน: </label>
+    <input type="password" id="password" placeholder="กรอกรหัสผ่าน" required />
+    <button type="button" onclick="checkPasswordLength()">ตรวจสอบ</button>
+    <p id="passwordResult"></p>
+
+    <hr>
+
+    <h2>คำนวณ BMI</h2>
+    <label for="weight">น้ำหนัก (กก.): </label>
+    <input type="number" id="weight" placeholder="กรอกน้ำหนัก" required />
+    <br><br>
+    <label for="height">ส่วนสูง (เมตร): </label>
+    <input type="number" step="0.01" id="height" placeholder="กรอกส่วนสูง" required />
+    <br><br>
+    <button type="button" onclick="calculateBMI()">คำนวณ BMI</button>
+    <p id="bmiResult"></p>
+
+    <hr>
+
+    <h2>ทักทายตามอายุ</h2>
+    <label for="name">ชื่อ: </label>
+    <input type="text" id="name" placeholder="กรอกชื่อ" required />
+    <br><br>
+    <label for="age">อายุ: </label>
+    <input type="number" id="age" placeholder="กรอกอายุ" required />
+    <br><br>
+    <button type="button" onclick="greetBasedOnAge()">แสดงคำทักทาย</button>
+    <p id="ageGreeting"></p>
+
+    <script>
+        // ฟังก์ชันคำนวณ BMI
+        const calculateBMI = () => {
+            let weight = parseFloat(document.getElementById('weight').value);
+            let height = parseFloat(document.getElementById('height').value);
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                document.getElementById('bmiResult').innerText = 'กรุณากรอกข้อมูลน้ำหนักและส่วนสูงให้ถูกต้อง';
+                return;
+            }
+
+            const bmi = weight / (height ** 2);
+            document.getElementById('bmiResult').innerText = `ค่า BMI ของคุณคือ: ${bmi.toFixed(2)}`;
+        };
+
+        // ฟังก์ชันทักทายตามอายุ
+        const greetBasedOnAge = () => {
+            let name = document.getElementById('name').value.trim();
+            let age = parseInt(document.getElementById('age').value);
+
+            if (isNaN(age) || age <= 0 || name === '') {
+                document.getElementById('ageGreeting').innerText = 'กรุณากรอกข้อมูลชื่อและอายุให้ถูกต้อง';
+                return;
+            }
+
+            let greeting = (age < 18)
+                ? `สวัสดีครับ ${name} นู๋`
+                : (age >= 18 && age < 60)
+                    ? `ดีครับ ${name}`
+                    : `สวัสดีครับ ${name} คนแก่`;
+
+            document.getElementById('ageGreeting').innerText = greeting;
+        };
+
+        // ฟังก์ชันตรวจสอบรหัสผ่าน
+        const checkPasswordLength = () => {
+            let password = document.getElementById('password').value;
+
+            if (password.length === 8) {
+                document.getElementById('passwordResult').innerText = '✅ รหัสผ่านถูกต้อง';
+            } else {
+                document.getElementById('passwordResult').innerText = '❌ รหัสผ่านต้องมีความยาว 8 ตัวอักษร';
+            }
+        };
+    </script>
+
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 2.4.2]
+![image](https://github.com/user-attachments/assets/b98200ff-e2bf-4b1e-8b65-a3a7041a17b3)
 
 
 ## การทดลองที่ 3 : การใช้ JavaScript กับ HTML และ CSS
